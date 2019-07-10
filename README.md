@@ -24,10 +24,18 @@ changed the operator or the lazar role.
     $ docker push informaticsmatters/lazar-operator:0.0.1
 
 ## Deploying the operator (OpenShift)
+Yor user account will need admin privileges in the OpenShift cluster.
+This is because you'll be creating a Role, Service Accounts Role Binding,
+and a Custom Resource Definition.
+
+Start with a new project: -
+
+    $ oc new-project lazar
+
 Create the Custom Resource Definition and deploy the service-account
 role, operator etc.: -
 
-    $ oc create -f deploy/crds/infra_v1alpha1_infra_crd.yaml \
+    $ oc create -f deploy/crds/lazar_v1alpha1_lazar_crd.yaml \
                 -f deploy/service_account.yaml \
                 -f deploy/role.yaml \
                 -f deploy/role_binding.yaml \
@@ -40,9 +48,9 @@ the service-account: -
     $ oc adm policy add-cluster-role-to-user admin -z lazar-operator
     $ oc adm policy add-scc-to-user anyuid -z lazar-operator
     
-Then, to deploy/apply lazar, apply the Custom Resource: -
+Now we can deploy lazar by _applying_ the Custom Resource: -
 
-    $ oc apply -f deploy/crds/infra_v1alpha1_infra_cr.yaml
+    $ oc apply -f deploy/crds/lazar_v1alpha1_lazar_cr.yaml
 
 To un-deploy lazar you can reply on the role's built-in ability to
 delete the objects it created by setting the custom resource `state` value to
@@ -53,7 +61,7 @@ delete the objects it created by setting the custom resource `state` value to
 
 And then re-apply the resource: -
 
-    $ oc apply -f deploy/crds/infra_v1alpha1_infra_cr.yaml
+    $ oc apply -f deploy/crds/lazar_v1alpha1_lazar_cr.yaml
 
 ---
 
