@@ -7,7 +7,7 @@ port-of-call should be the Operator SDK [User Guide].
     which means we don't have to know anything about **Go**, only **Ansible**
     and has its own [Ansible Operator Guide].
 
-## Prerequisites
+## Prerequisites
 You will need the Operator SDK if you are going to build
 the operator (you don't need the SDK to use the operator).
 
@@ -15,7 +15,7 @@ There is an [installation guide] fop the SDK, on brew (OSX) you could run: -
 
     $ brew install operator-sdk
 
-## Building the operator
+## Building the operator
 The operator is built with the SDK and deployed to Docker Hub. The operator
 has already been deployed so you only need to follow this step if you've
 changed the operator or the lazar role.
