@@ -57,7 +57,7 @@ And then re-apply the resource: -
 
 ---
 
-[ansible oeprator guide]: https://github.com/operator-framework/operator-sdk/blob/master/doc/ansible/user-guide.md
+[ansible operator guide]: https://github.com/operator-framework/operator-sdk/blob/master/doc/ansible/user-guide.md
 [installation guide]: https://github.com/operator-framework/operator-sdk/blob/master/doc/user/install-operator-sdk.md
 [lazar]: https://github.com/OpenRiskNet/home/tree/master/openshift/deployments/lazar
 [operator]: https://www.openshift.com/learn/topics/operators
