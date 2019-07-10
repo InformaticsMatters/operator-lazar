@@ -1,0 +1,25 @@
+---
+
+galaxy_info:
+
+  author: Alan Christie
+  description: The Lazar Operator
+  company: Informatics Matters
+
+  license: license (GPLv3)
+
+  min_ansible_version: 2.7
+
+  platforms:
+  - name: OpenShift
+    versions:
+    - 3.11
+
+  galaxy_tags:
+  - kubernetes
+  - k8s
+  - openshift
+  - lazar
+  - openrisknet
+
+dependencies: []

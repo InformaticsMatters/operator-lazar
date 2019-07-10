@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: lazar-operator
+subjects:
+- kind: ServiceAccount
+  name: lazar-operator
+roleRef:
+  kind: Role
+  name: lazar-operator
+  apiGroup: rbac.authorization.k8s.io

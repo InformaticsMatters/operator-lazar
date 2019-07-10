@@ -1,0 +1,20 @@
+---
+
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+spec:
+  dockerImageRepository: docker.io/gebele/lazar-rest
+  lookupPolicy:
+    local: false
+  tags:
+  - from:
+      kind: DockerImage
+      name: docker.io/gebele/lazar-rest:{{ image_tag }}
+    importPolicy:
+      scheduled: true
+    name: latest
+    referencePolicy:
+      type: Source

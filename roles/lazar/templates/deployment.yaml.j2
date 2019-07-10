@@ -1,0 +1,71 @@
+---
+
+kind: Deployment
+apiVersion: v1
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+  labels:
+    app: {{ name }}
+    service: {{ name }}
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - lazar
+      from:
+        kind: ImageStreamTag
+        name: {{ name }}:{{ image_tag }}
+    type: ImageChange
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ name }}
+      service: {{ name }}
+    app: {{ name }}
+    service: {{ name }}
+  template:
+    metadata:
+      labels:
+        app: {{ name }}
+        service: {{ name }}
+    spec:
+      restartPolicy: Always
+      dnsPolicy: ClusterFirst
+      serviceAccountName: lazar-operator
+      containers:
+      - name: lazar
+        image: docker.io/gebele/lazar-rest:{{ image_tag }}
+        ports:
+        - containerPort: 8088
+          protocol: TCP
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: "/"
+            port: 8088
+            scheme: "HTTP"
+          failureTreshold: 20
+          initialDelaySeconds: 90
+          periodSeconds: 30
+          timeoutSeconds: 4
+        livenessProbe:
+          exec:
+            command:
+            - ls
+            - /home/ist
+          failureTreshold: 10
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 4
+        resources:
+          requests:
+            cpu: {{ cpu_request }}
+            memory: {{ mem_request }}
+          limits:
+            cpu: {{ cpu_limit }}
+            memory: {{ mem_limit }}

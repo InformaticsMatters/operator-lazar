@@ -1,0 +1,27 @@
+---
+
+# Resource requests and limits
+cpu_limit: 2000m
+cpu_request: 1000m
+mem_limit: 4Gi
+mem_request: 2Gi
+
+# The Lazar-REST image tag
+image_tag: latest
+
+# Whether the route TLS certificate should be automatically generated
+# by the (expected) ACME controller. This is a string, which should be
+# "true" or "false".
+route_tls: "false"
+# The name of the route
+route_name: "{{ meta.name | default('lazar') }}"
+
+
+pull_policy: Always
+
+# The service port for the lazer service.
+service_port: 8088
+
+# To uninstall from the cluster
+# state: absent
+state: present

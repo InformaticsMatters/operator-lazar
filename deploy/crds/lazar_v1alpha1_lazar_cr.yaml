@@ -1,0 +1,6 @@
+apiVersion: lazar.informaticsmatters.com/v1alpha1
+kind: Lazar
+metadata:
+  name: lazar
+spec:
+  state: present

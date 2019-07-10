@@ -1,0 +1,21 @@
+---
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ route_name }}
+  namespace: {{ namespace }}
+  labels:
+    app: {{ name }}
+    service: {{ name }}
+  annotations:
+    kubernetes.io/tls-acme: "{{ route_tls }}"
+spec:
+  port:
+    targetPort: {{ name }}
+  to:
+    kind: Service
+    name: {{ name }}
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

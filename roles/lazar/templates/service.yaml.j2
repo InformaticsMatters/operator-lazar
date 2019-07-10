@@ -1,0 +1,21 @@
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+  labels:
+    app: {{ name }}
+    service: {{ name }}
+  annotations:
+    openrisknet-static-services: http://{{ route_name }}.{{ namespace }}.svc.cluster.local:{{ service_port }}/api/api.json
+spec:
+  ports:
+  - name: lazar
+    port: {{ service_port }}
+    protocol: TCP
+    targetPort: 8088
+  selector:
+    app: {{ name }}
+    service: {{ name }}

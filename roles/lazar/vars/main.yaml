@@ -1,0 +1,5 @@
+---
+
+# NOTE: meta.name(space) comes from CR metadata when run with Ansible Operator
+name: "{{ meta.name | default('lazar') }}"
+namespace: "{{ meta.namespace | default('lazar') }}"

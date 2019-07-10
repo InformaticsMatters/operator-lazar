@@ -1,0 +1,5 @@
+---
+- version: v1alpha1
+  group: lazar.informaticsmatters.com
+  kind: Lazar
+  role: /opt/ansible/roles/lazar
